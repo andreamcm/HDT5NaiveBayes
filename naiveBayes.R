@@ -1,7 +1,7 @@
 #-----------------------------------------------------------------------------------------------------------------------------------------------
 # Universidad del Valle de Guatemala
 # Autores: Andrea Maria Cordon Mayen, 16076
-#          Cristopher Sebastian Recinos Ramírez, 16005
+#          Cristopher Sebastian Recinos RamÃ­rez, 16005
 # Fecha: 18/03/2019
 # arboles.R
 #-----------------------------------------------------------------------------------------------------------------------------------------------
@@ -22,10 +22,10 @@ library(mlr)
 # --------------------------------------
 
 # Set del working directory de Andrea
-setwd("~/2019/UVG/Primer Semestre/Minería de Datos/Laboratorios/Laboratorio5/HDT5NaiveBayes/Datos")
+setwd("~/2019/UVG/Primer Semestre/MinerÃ­a de Datos/Laboratorios/Laboratorio5/HDT5NaiveBayes/Datos")
 
 # Set del working directory de Sebastian
-
+setwd("C:/Users/sebas/Documents/UVG/201901/Mineria/Laboratorio5/HDT5NaiveBayes/Datos")
 
 # Se cargan todos los datos 
 datitus <- read.csv("train2.csv")
@@ -41,18 +41,21 @@ datos <- datitus[, c("Type", "Age", "Breed1", "Breed2", "Gender", "Color1", "Col
 porcentaje<-0.7
 set.seed(123)
 
+# Datos de entrenamiento y prueba
 corte <- sample(nrow(datos), nrow(datos)*porcentaje)
 train <- datos[corte,]
 test <- datos[-corte,]
 test
 test$AdoptionSpeed
 
+# Adoption Speed
 modeloNB <- naiveBayes(as.factor(AdoptionSpeed)~Type + Breed1, data = train)
 modeloNB
 prediccion <- predict(modeloNB, newdata = test)
 prediccion
 table(prediccion, test$AdoptionSpeed)
 
+# Matriz de confusiÃ³n
 confusionMatrix(as.factor(prediccion), as.factor(test$AdoptionSpeed))
 
 
