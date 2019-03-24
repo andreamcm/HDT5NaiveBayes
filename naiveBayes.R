@@ -47,7 +47,7 @@ test <- datos[-corte,]
 test
 test$AdoptionSpeed
 
-modeloNB <- naiveBayes(as.factor(AdoptionSpeed)~Type + Breed1, data = train)
+modeloNB <- naiveBayes(as.factor(AdoptionSpeed)~Type, data = train)
 modeloNB
 prediccion <- predict(modeloNB, newdata = test)
 prediccion
